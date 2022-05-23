@@ -1,0 +1,7 @@
+{
+  "name": "yellowpagesmobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

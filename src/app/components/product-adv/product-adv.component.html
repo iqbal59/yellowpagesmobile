@@ -1,0 +1,10 @@
+<a [href]="bannerTop && bannerTop.link ? bannerTop.link : '/'" target="_blank">
+  <img
+    style="cursor: pointer"
+    *ngIf="bannerTop && bannerTop.imageContent"
+    [src]="bannerTop.imageContent"
+    (click)="this.bannerService.increaseCount(bannerTop.id, 'banner')"
+    alt="banner Image"
+    class="img-fluid he17"
+  />
+</a>

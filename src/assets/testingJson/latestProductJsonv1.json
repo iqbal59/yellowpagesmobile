@@ -1,0 +1,61 @@
+{
+  "products":[
+    {
+      "product_name":"product 1",
+      "product_id":"1",
+      "product_image_url":"https://rukminim1.flixcart.com/flap/150/150/image/15c53a73ea51bb1a.jpg?q=70"
+    },
+    {
+      "product_name":"product 1",
+      "product_id":"1",
+      "product_image_url":"https://rukminim1.flixcart.com/flap/150/150/image/15c53a73ea51bb1a.jpg?q=70"
+    },
+    {
+      "product_name":"product 1",
+      "product_id":"1",
+      "product_image_url":"https://rukminim1.flixcart.com/flap/150/150/image/15c53a73ea51bb1a.jpg?q=70"
+    },
+    {
+      "product_name":"product 1",
+      "product_id":"1",
+      "product_image_url":"https://rukminim1.flixcart.com/flap/150/150/image/15c53a73ea51bb1a.jpg?q=70"
+    },
+    {
+      "product_name":"product 1",
+      "product_id":"1",
+      "product_image_url":"https://rukminim1.flixcart.com/flap/150/150/image/15c53a73ea51bb1a.jpg?q=70"
+    },
+    {
+      "product_name":"product 1",
+      "product_id":"1",
+      "product_image_url":"https://rukminim1.flixcart.com/flap/150/150/image/15c53a73ea51bb1a.jpg?q=70"
+    },
+    {
+      "product_name":"product 1",
+      "product_id":"1",
+      "product_image_url":"https://rukminim1.flixcart.com/flap/150/150/image/15c53a73ea51bb1a.jpg?q=70"
+    }
+  ],
+  "category":{
+    "category_name":"Cateory Name",
+    "category_id":"1",
+    "subcategory_list":[
+      {
+        "subcategory_name":"sub category 1",
+        "subcategory_id":"1"
+      },
+      {
+        "subcategory_name":"sub category 2",
+        "subcategory_id":"2"
+      },
+      {
+        "subcategory_name":"sub category 3",
+        "subcategory_id":"3"
+      },
+      {
+        "subcategory_name":"sub category 4",
+        "subcategory_id":"4"
+      }
+    ]
+  }
+}

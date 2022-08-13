@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title *ngIf="this.categoryId">{{this.categoryName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="cateLbl">
+    <ion-label class="all"
+      >{{this.categoryId ? 'POPULAR SUB CATEGORIES' : 'POPULAR CATEGORIES'
+      }}</ion-label
+    >
+  </div>
+
+  <div class="topcategory">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col
+          size="6"
+          *ngFor="let item of (this.categoryId ? popular_subcategories : popular_categories) | slice:0:4;let i=index"
+        >
+          <div
+            (click)="this.categoryId ? getUrl(item.id, item.subCategoryName) : getUrl(item.id, item.categoryName)"
+          >
+            <app-yp-img
+              [id]="item.image ? item.image.id : null"
+              [shimmer]="true"
+              [imgHt]="150"
+            ></app-yp-img>
+            <div
+              class="bottom_div"
+              title="{{this.categoryId ? item.subCategoryName : item.categoryName}}"
+            >
+              <p class="ion-text-center">
+                {{this.categoryId ? item.subCategoryName : item.categoryName}}
+              </p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list *ngFor="let item of all_categories;let i=index">
+      <ion-item
+        lines="full"
+        detail="true"
+        *ngFor="let subitem of item.record;let i=index"
+        (click)="this.categoryId ? getUrl(subitem.id, subitem.subCategoryName) : getUrl(subitem.id, subitem.categoryName)"
+      >
+        <ion-label
+          >{{this.categoryId ? subitem.subCategoryName :
+          subitem.categoryName}}</ion-label
+        >
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

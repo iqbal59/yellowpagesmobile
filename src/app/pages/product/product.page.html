@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Product</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons> </ion-toolbar
+></ion-header>
+
+<ion-content>
+  <ion-card *ngIf="prodDetails">
+    <app-yp-img
+      [id]="
+      prodDetails && prodDetails.images && prodDetails.images.length > 0
+        ? prodDetails.images[0].id
+        : null
+    "
+      target="_blank"
+      [shimmer]="true"
+      [height]="'135px'"
+      [prodName]="prodDetails.productName"
+    ></app-yp-img>
+
+    <ion-card-header>
+      <ion-card-title>
+        {{ prodDetails.productName.length > 100 ?
+        prodDetails.productName.substring(0, 100) : prodDetails.productName
+        }}</ion-card-title
+      >
+    </ion-card-header>
+    <ion-card-content>
+      {{ prodDetails.productDescription }}
+
+      <br />
+      <br />
+      <div
+        *ngIf="
+      prodDetails &&
+    prodDetails.productsCategory &&
+    prodDetails.productsCategory.categoryName
+  "
+      >
+        <strong>Category:</strong> {{prodDetails.productsCategory.categoryName}}
+      </div>
+
+      <div
+        *ngIf="
+        prodDetails &&
+      prodDetails.productsSubcategory &&
+      prodDetails.productsSubcategory.subCategoryName
+    "
+      >
+        <strong>Sub Category:</strong> {{
+        prodDetails.productsSubcategory.subCategoryName}}
+      </div>
+
+      <br />
+
+      <ion-button fill="outline" size="small">
+        {{prodDetails.seller.sellerVirtualContactPhone}}</ion-button
+      >
+      <ion-button fill="outline" size="small">Enquire Now</ion-button>
+      <ion-button color="primary" size="small">
+        <ion-icon
+          name="logo-whatsapp"
+          color="secondary"
+          slot="start"
+        ></ion-icon>
+        <a
+          [href]="
+          this.urlService.getProductToWhatsapp(
+            prodDetails.productName,
+            prodDetails.id,
+            prodDetails.seller
+          )
+        "
+          target="_blank"
+          >Whatsapp</a
+        ></ion-button
+      >
+      <br />
+      <br />
+
+      <div
+        *ngIf="prodDetails && prodDetails.seller && prodDetails.seller.sellerCompanyName"
+        class="sponsored-footer"
+      >
+        <p
+          (click)="sellerUrl( this.urlService.getSellerUrl(prodDetails.seller.sellerCompanyName))"
+        >
+          <span class="sponsor-name"
+            ><strong>Sold by: </strong
+            >{{prodDetails.seller.sellerCompanyName}}</span
+          >
+        </p>
+      </div>
+      <div
+        *ngIf="prodDetails && prodDetails.seller && prodDetails.seller"
+        class="sponsored-footer"
+      >
+        <p>
+          <strong>Service Area: </strong>
+          <span
+            *ngIf="prodDetails.seller.mainMarkets && prodDetails.seller.mainMarkets.length > 0 && (prodDetails.seller.mainMarkets.length[0] != '' || prodDetails.seller.mainMarkets.length[0] != null)"
+            class="sponsor-name"
+            >{{prodDetails.seller.mainMarkets.join(', ')}}</span
+          >
+          <span
+            *ngIf="(!prodDetails.seller.mainMarkets || 
+                        (prodDetails.seller.mainMarkets && prodDetails.seller.mainMarkets.length == 0) ||
+                        (prodDetails.seller.mainMarkets && prodDetails.seller.mainMarkets.length > 0 && (prodDetails.seller.mainMarkets[0] == null || prodDetails.seller.mainMarkets[0] == ''))) && 
+                        (prodDetails.seller.country || prodDetails.seller.state || prodDetails.seller.city)"
+            class="sponsor-name"
+          >
+            {{prodDetails.seller.city ? (prodDetails.seller.city + ', ') : ''}}
+            {{prodDetails.seller.state ? (prodDetails.seller.state + ', ') :
+            ''}} {{prodDetails.seller.country ? (prodDetails.seller.country) :
+            ''}}</span
+          >
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="ion-padding">
+    <app-requirement-small></app-requirement-small>
+  </div>
+</ion-content>

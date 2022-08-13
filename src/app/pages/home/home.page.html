@@ -1,0 +1,364 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"> Yellow Pages </ion-title>
+    <ion-buttons slot="end">
+      <ion-button size="large">
+        <img src="assets/logo.png" height="100%"
+      /></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="searchbar">
+    <ion-item lines="none">
+      <ion-icon name="search" slot="start"></ion-icon>
+      <ion-input
+        placeholder="What are you looking for?"
+        (click)="openSearch()"
+      ></ion-input>
+    </ion-item>
+  </div>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar type="indeterminate" *ngIf="isLoading"></ion-progress-bar>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="main_content_div">
+    <div class="slider_div">
+      <ion-slides [options]="slideOpts1" #sliderHomeBanner>
+        <ion-slide>
+          <a
+            [href]="
+            this.homepageV2Service.headerLeft &&
+            this.homepageV2Service.headerLeft.link
+              ? this.homepageV2Service.headerLeft.link
+              : '/'
+          "
+            target="_blank"
+          >
+            <img
+              style="cursor: pointer"
+              *ngIf="
+              this.homepageV2Service.headerLeft &&
+              this.homepageV2Service.headerLeft.imageContent
+            "
+              [src]="this.homepageV2Service.headerLeft.imageContent"
+              (click)="
+              this.bannerService.increaseCount(
+                this.homepageV2Service.headerLeft.id,
+                'banner'
+              )
+            "
+              class="img-fluid he25"
+              [alt]="this.homepageV2Service.headerLeft.altImgText"
+            />
+          </a>
+        </ion-slide>
+        <ion-slide>
+          <a
+            [href]="
+            this.homepageV2Service.headerCenter &&
+            this.homepageV2Service.headerCenter.link
+              ? this.homepageV2Service.headerCenter.link
+              : '/'
+          "
+            target="_blank"
+          >
+            <img
+              style="cursor: pointer"
+              *ngIf="
+              this.homepageV2Service.headerCenter &&
+              this.homepageV2Service.headerCenter.imageContent
+            "
+              [src]="this.homepageV2Service.headerCenter.imageContent"
+              (click)="
+              this.bannerService.increaseCount(
+                this.homepageV2Service.headerCenter.id,
+                'banner'
+              )
+            "
+              class="img-fluid he25"
+              [alt]="this.homepageV2Service.headerCenter.altImgText"
+            /> </a
+        ></ion-slide>
+        <ion-slide>
+          <a
+            [href]="
+            this.homepageV2Service.headerRight &&
+            this.homepageV2Service.headerRight.link
+              ? this.homepageV2Service.headerRight.link
+              : '/'
+          "
+            target="_blank"
+          >
+            <img
+              style="cursor: pointer"
+              *ngIf="
+              this.homepageV2Service.headerRight &&
+              this.homepageV2Service.headerRight.imageContent
+            "
+              [src]="this.homepageV2Service.headerRight.imageContent"
+              (click)="
+              this.bannerService.increaseCount(
+                this.homepageV2Service.headerRight.id,
+                'banner'
+              )
+            "
+              class="img-fluid he25"
+              [alt]="this.homepageV2Service.headerRight.altImgText"
+            />
+          </a>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div class="top-banner">
+      <a
+        [href]="
+        this.homepageV2Service.topRight &&
+        this.homepageV2Service.topRight.link
+          ? this.homepageV2Service.topRight.link
+          : '/'
+      "
+        target="_blank"
+      >
+        <img
+          *ngIf="
+      this.homepageV2Service.topRight &&
+      this.homepageV2Service.topRight.imageContent
+    "
+          [src]="this.homepageV2Service.topRight.imageContent"
+          (click)="
+      this.bannerService.increaseCount(
+        this.homepageV2Service.topRight.id,
+        'banner'
+      )
+    "
+          [alt]="this.homepageV2Service.topRight.altImgText"
+        />
+      </a>
+    </div>
+
+    <div
+      id="div-gpt-ad-1632925223062-0"
+      style="text-align: center; margin-bottom: 16px"
+    ></div>
+
+    <div class="cateLbl">
+      <ion-label class="all">FROM THE BLOG</ion-label>
+    </div>
+
+    <div class="slider_div">
+      <ion-slides [options]="slideOpts" #sliderHome>
+        <ion-slide *ngFor="let item of dummyBanners">
+          <!-- <div class="card"> -->
+          <ion-skeleton-text
+            animated
+            style="width: 100%; height: 120px"
+          ></ion-skeleton-text>
+          <!-- </div> -->
+        </ion-slide>
+        <ion-slide *ngFor="let blog of blogs">
+          <ion-card (click)="blogDetail(blog.title)">
+            <img
+              [src]="blog.image.imageContent"
+              *ngIf="blog.image && blog.image.imageContent"
+            />
+            <ion-card-header>
+              <ion-card-subtitle>
+                {{ blog.createdBy.split(" ")[0] }}, {{ blog.createdDate | date:
+                "mediumDate" }}</ion-card-subtitle
+              >
+              <ion-card-title>{{blog.title}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content [innerHtml]="blog.description">
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div class="cateLbl">
+      <ion-label class="all">POPULAR CATEGORIES</ion-label>
+    </div>
+
+    <div class="topcategory">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6" *ngFor="let item of popular_categories">
+            <div
+              (click)="goCategory(item.categoryName, item.id)"
+              class="back_image"
+              [style.backgroundImage]="'url('+item.image.imageContent+')'"
+            >
+              <div class="bottom_div">
+                {{ item.categoryName ? item.categoryName.substring( 0, 30 ) +
+                (item.categoryName.length > 30 ? "..." : "") : "" }}
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="cateLbl">
+      <ion-label class="all">POPULAR PRODUCTS</ion-label>
+    </div>
+    <div class="popular_product">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6" *ngFor="let item of popular_products">
+            <ion-card (click)="productDetail(item.id)">
+              <img
+                [src]="item.images[0].imageContent"
+                [alt]="item.productName"
+                *ngIf="
+              item &&
+                item.images &&
+                item.images.length > 0 &&
+                item.images[0].imageContent"
+              />
+              <ion-card-header>
+                <ion-card-title>
+                  {{ item.productName ? item.productName.substring( 0, 30 ) +
+                  (item.productName.length > 30 ? "..." : "") : ""
+                  }}</ion-card-title
+                >
+              </ion-card-header>
+              <ion-card-content>
+                {{ item.productDescription ? item.productDescription.substring(
+                0, 40 ) + (item.productDescription.length > 30 ? "..." : "") :
+                "" }}
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="cateLbl">
+      <ion-label class="all">LATEST OFFERS</ion-label>
+    </div>
+
+    <div class="slider_div">
+      <ion-slides [options]="slideOpts" #sliderOffer>
+        <ion-slide *ngFor="let item of latest_offers">
+          <ion-card>
+            <a [href]="item.link ? item.link : '/'" target="_blank">
+              <img
+                [src]="item.image.imageContent"
+                alt="latest offer"
+                *ngIf="
+              item && item.image && item.image.imageContent"
+              />
+            </a>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div class="cateLbl">
+      <ion-label class="all">LATEST PRODUCTS</ion-label>
+    </div>
+    <div class="popular_product">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6" *ngFor="let item of latest_products">
+            <ion-card (click)="productDetail(item.id)">
+              <img
+                [src]="item.images[0].imageContent"
+                [alt]="item.productName"
+                *ngIf="
+              item &&
+                item.images &&
+                item.images.length > 0 &&
+                item.images[0].imageContent"
+              />
+              <ion-card-header>
+                <ion-card-title>
+                  {{ item.productName ? item.productName.substring( 0, 30 ) +
+                  (item.productName.length > 30 ? "..." : "") : ""
+                  }}</ion-card-title
+                >
+              </ion-card-header>
+              <ion-card-content>
+                {{ item.productDescription ? item.productDescription.substring(
+                0, 40 ) + (item.productDescription.length > 30 ? "..." : "") :
+                "" }}
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!-- <div class="cateLbl">
+      <ion-label class="all">Suppliers By Emirates</ion-label>
+    </div>
+    <div class="supplier">
+      <div class="slider_div">
+        <ion-slides [options]="slideOpts1" #sliderHome>
+          <ion-slide *ngFor="let area of areas">
+            <ion-button
+              color="dark"
+              size="medium"
+              shape="round"
+              expand="block"
+              (click)="searchArea(area)"
+            >
+              <img src="assets/emirates.png" /> {{area}}</ion-button
+            >
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div> -->
+
+    <div>
+      <app-requirement-small></app-requirement-small>
+    </div>
+    <!-- About yellowpages -->
+    <div class="about_div">
+      <!-- <strong>About Yellow Pages</strong>
+      <p>
+        Etisalat yellow pages UAE is one of the largest B2B portal & online
+        business directory. You can find the top verified sellers,
+        manufacturers, suppliers, wholesalers and more businesses listed with
+        us. Our website is significantly better and customized to help you grow
+        your business and easily accessible for the visitors. A buyer can get
+        quality products and services from certified brands that are listed with
+        Etisalat Yellow Pages UAE. The businesses and service providers that
+        have registered their company with us are all verified. We have been
+        giving complete services to the clients that helps the businesses grow.
+        We have categorised the product and services alphabetically that becomes
+        easy for the visitors to find any product and services.
+      </p> -->
+    </div>
+    <!-- About yellowpages end-->
+  </div>
+  <div class="social ion-text-center">
+    <a href="https://www.facebook.com/UAEYellowPages"
+      ><ion-icon name="logo-facebook"></ion-icon
+    ></a>
+    <a href="https://twitter.com/etisalatyp"
+      ><ion-icon name="logo-twitter"></ion-icon
+    ></a>
+    <a href="https://www.pinterest.com/yellowpages_ae/"
+      ><ion-icon name="logo-pinterest"></ion-icon
+    ></a>
+    <a href="https://www.instagram.com/etisalatyellowpages/"
+      ><ion-icon name="logo-instagram"></ion-icon
+    ></a>
+    <a href="https://www.linkedin.com/company/etisalat-yellow-pages"
+      ><ion-icon name="logo-linkedin"></ion-icon
+    ></a>
+    <a href="https://vimeo.com/etisalatyellowpagesuae/"
+      ><ion-icon name="logo-vimeo"></ion-icon
+    ></a>
+  </div>
+
+  <div id="div-gpt-ad-1632925263668-0" class="stick_ad"></div>
+</ion-content>

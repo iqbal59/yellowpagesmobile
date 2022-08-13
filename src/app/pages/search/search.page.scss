@@ -1,0 +1,29 @@
+ion-card {
+  img {
+    max-height: 100px;
+  }
+  ion-card-header {
+    ion-card-title {
+      font-size: 18px;
+    }
+  }
+
+  ion-button {
+    a {
+      color: #ffff !important;
+      text-decoration: none;
+    }
+  }
+}
+
+.sponsored {
+  background-color: #eee;
+  border: 2px solid #719e19;
+}
+
+.featured {
+  border: 2px solid rgb(250, 214, 6);
+}
+.top-banner {
+  padding: 16px;
+}

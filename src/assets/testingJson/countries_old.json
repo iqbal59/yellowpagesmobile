@@ -1,0 +1,46 @@
+{
+  "Countries": [
+    {
+      "States": [
+        {
+          "Cities": ["Select a City"],
+          "StateName": "Select a State"
+        },
+        {
+          
+          "Cities": [
+            "Select a City", "Abu al Abyad", "Al Ain", "Al Ajban", "Al Aryam", "Al Faqa", "Al Mirfa", "Al Shuwaib", "Al Yahar",
+            "Dalma", "Habshan", "Marawah", "Nahil", "Sila", "Sir Bani Yas", "Sweihan"
+          ],
+          "StateName": "Abu Dhabi"
+        },
+        {
+          "Cities": ["Select a City","Al Manama","Masfut"],
+          "StateName": "Ajman"
+        },
+        {
+          "Cities": ["Select a City","Al Qusais", "Al Faqa", "Al Awir","Dubai","Jebel Ali"],
+          "StateName": "Dubai"
+        },
+        {
+          "Cities": ["Select a City","Adgat","Afarah","Akamiya","Al Abadilah"],
+          "StateName": "Fujairah"
+        },
+        {
+          "Cities": ["Select a City","Ras Al Khaimah"],
+          "StateName": "Ras Al Khaimah"
+        },
+        {
+          "Cities": ["Select a City","Al Bataeh", "Al Hamriyah", "Mleiha", "Sharjah"],
+          "StateName": "Sharjah"
+        },
+        {
+          "Cities": ["Select a City","Al Rafaah", "Al Rashidya", "Falaj Al Mualla", "Umm Al Quwain"],
+          "StateName": "Umm Al Quwain"
+        }
+
+      ],
+      "CountryName": "United Arab Emirates"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+<ion-grid>
+  <form
+    *ngIf="this.requirementService.productSellerForm"
+    class="seller-enquiry-form form-row align-items-center"
+    [formGroup]="this.requirementService.productSellerForm"
+  >
+    <ion-row>
+      <ion-col size="12"><h4>Post your requirements</h4></ion-col>
+      <ion-col size="12">
+        <ion-item lines="full">
+          <ion-label position="floating">Product/Service*</ion-label>
+          <ion-input type="text" formControlName="productName"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-item lines="full">
+          <ion-label position="floating">Quantity*</ion-label>
+          <ion-input formControlName="quantity"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-item lines="full">
+          <ion-label position="floating">Unit*</ion-label>
+          <ion-select formControlName="quantityUnit">
+            <ion-select-option
+              *ngFor="let unit of this.requirementService.units"
+              [value]="unit"
+              >{{ unit }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-item lines="full">
+          <ion-label position="floating">I am intrested in*</ion-label>
+          <ion-input formControlName="requirement"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="5">
+        <ion-item lines="full">
+          <ion-label position="floating">Code*</ion-label>
+          <ion-select formControlName="countryCode">
+            <ion-select-option
+              *ngFor="let opt of this.requirementService.countries"
+              [value]="opt.code"
+              >{{ opt.code }} - {{ opt.name }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="7">
+        <ion-item lines="full">
+          <ion-label position="floating">Mobile No.*</ion-label>
+          <ion-input formControlName="contactNumber"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button
+          color="primary"
+          class="ion-float-right"
+          (click)="this.requirementService.onClickSubmitRequirement()"
+          [disabled]="this.requirementService.productSellerForm.invalid"
+          >Send Enquiry</ion-button
+        >
+      </ion-col>
+
+      <ion-col size="12">
+        <h4 class="call-us">
+          <a href="tel:+97142494545">Call Us: +97142494545</a>
+        </h4>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-grid>

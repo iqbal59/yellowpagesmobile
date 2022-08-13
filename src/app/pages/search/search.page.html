@@ -1,0 +1,285 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Search Result</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="top-banner">
+    <app-product-adv
+      [bannerPosition]="'Search Product Top'"
+      [renderServerSide]="false"
+      [image]="image"
+    ></app-product-adv>
+
+    <div
+      id="div-gpt-ad-1632925301806-0"
+      style="text-align: center; margin-bottom: 16px"
+    ></div>
+  </div>
+  <ion-card class="sponsored" *ngIf="sponsoredProduct">
+    <app-yp-img
+      [id]="
+      sponsoredProduct && sponsoredProduct.images && sponsoredProduct.images.length > 0
+        ? sponsoredProduct.images[0].id
+        : null
+    "
+      target="_blank"
+      [shimmer]="true"
+      [height]="'135px'"
+      [prodName]="sponsoredProduct.altText ? sponsoredProduct.altText : sponsoredProduct.productName"
+    ></app-yp-img>
+    <ion-card-header>
+      <ion-card-title>
+        {{ sponsoredProduct.productName.length > 100 ?
+        sponsoredProduct.productName.substring(0, 100) :
+        sponsoredProduct.productName }}</ion-card-title
+      >
+    </ion-card-header>
+    <ion-card-content>
+      {{ sponsoredProduct.productDescription }}
+
+      <br />
+      <br />
+
+      <div
+        *ngIf="
+        sponsoredProduct &&
+        sponsoredProduct.productsSubcategory &&
+        sponsoredProduct.productsSubcategory.subCategoryName
+    "
+      >
+        <strong>Sub Category:</strong>
+        {{sponsoredProduct.productsSubcategory.subCategoryName}}
+      </div>
+
+      <ion-text>
+        {{sponsoredProduct.seller.sellerVirtualContactPhone}}
+      </ion-text>
+      <br />
+      <br />
+      <ion-button
+        fill="outline"
+        size="small"
+        (click)="productDetail(product.id)"
+        >View Details</ion-button
+      >
+      <ion-button fill="outline" size="small">Enquire Now</ion-button>
+      <ion-button color="primary" size="small">
+        <ion-icon
+          name="logo-whatsapp"
+          color="secondary"
+          slot="start"
+        ></ion-icon>
+        <a
+          [href]="
+          this.urlService.getProductToWhatsapp(
+            sponsoredProduct.productName,
+            sponsoredProduct.id,
+            sponsoredProduct.seller
+          )
+        "
+          target="_blank"
+          >Whatsapp</a
+        ></ion-button
+      >
+      <br />
+      <br />
+      <div
+        *ngIf="sponsoredProduct && sponsoredProduct.seller && sponsoredProduct.seller.sellerCompanyName"
+        class="sponsored-footer{{ feature }}"
+      >
+        <p
+          class="clmp-cls-1"
+          (click)="sellerUrl( this.urlService.getSellerUrl(sponsoredProduct.seller.sellerCompanyName))"
+        >
+          <strong
+            ><span class="sponsor-name">
+              {{ sponsoredProduct.seller.sellerCompanyName.length > SAWidth ?
+              sponsoredProduct.seller.sellerCompanyName.substring(0, SAWidth) :
+              sponsoredProduct.seller.sellerCompanyName }}<span
+                *ngIf="sponsoredProduct.seller.sellerCompanyName.length > SAWidth"
+                >...</span
+              >
+            </span></strong
+          >
+        </p>
+      </div>
+
+      <p (click)="productDetail(product.id)">
+        <span
+          *ngIf="
+              sponsoredProduct.seller.mainMarkets &&
+              sponsoredProduct.seller.mainMarkets.length > 0 &&
+              (sponsoredProduct.seller.mainMarkets.length[0] != '' ||
+                sponsoredProduct.seller.mainMarkets.length[0] != null)
+            "
+          class="service-area"
+          >{{ sponsoredProduct.seller.mainMarkets.join(", ") }}</span
+        >
+        <span
+          *ngIf="
+              (!sponsoredProduct.seller.mainMarkets ||
+                (sponsoredProduct.seller.mainMarkets &&
+                  sponsoredProduct.seller.mainMarkets.length == 0) ||
+                (sponsoredProduct.seller.mainMarkets &&
+                  sponsoredProduct.seller.mainMarkets.length > 0 &&
+                  (sponsoredProduct.seller.mainMarkets[0] == null ||
+                    sponsoredProduct.seller.mainMarkets[0] == ''))) &&
+              (sponsoredProduct.seller.country ||
+                sponsoredProduct.seller.state ||
+                sponsoredProduct.seller.city)
+            "
+          class="service-area"
+        >
+          {{ sponsoredProduct.seller.city ? sponsoredProduct.seller.city + ", "
+          : "" }} {{ sponsoredProduct.seller.state ?
+          sponsoredProduct.seller.state + ", " : "" }} {{
+          sponsoredProduct.seller.country ? sponsoredProduct.seller.country : ""
+          }}</span
+        >
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card
+    *ngFor="let product of products"
+    [ngClass]="{'featured':product.isFeatured}"
+  >
+    <app-yp-img
+      [id]="
+      product && product.images && product.images.length > 0
+        ? product.images[0].id
+        : null
+    "
+      target="_blank"
+      [shimmer]="true"
+      [height]="'135px'"
+      [prodName]="product.altText ? product.altText : product.productName"
+    ></app-yp-img>
+    <ion-card-header>
+      <ion-card-title>
+        {{ product.productName.length > 100 ? product.productName.substring(0,
+        100) : product.productName }}</ion-card-title
+      >
+    </ion-card-header>
+    <ion-card-content>
+      {{ product.productDescription }}
+
+      <br />
+      <br />
+
+      <div
+        *ngIf="
+      product &&
+      product.productsSubcategory &&
+      product.productsSubcategory.subCategoryName
+    "
+      >
+        <strong>Sub Category:</strong>
+        {{product.productsSubcategory.subCategoryName}}
+      </div>
+
+      <ion-text> {{product.seller.sellerVirtualContactPhone}} </ion-text>
+      <br />
+      <br />
+      <ion-button
+        fill="outline"
+        size="small"
+        (click)="productDetail(product.id)"
+        >View Details</ion-button
+      >
+      <ion-button fill="outline" size="small">Enquire Now</ion-button>
+      <ion-button color="primary" size="small">
+        <ion-icon
+          name="logo-whatsapp"
+          color="secondary"
+          slot="start"
+        ></ion-icon>
+        <a
+          [href]="
+          this.urlService.getProductToWhatsapp(
+            product.productName,
+            product.id,
+            product.seller
+          )
+        "
+          target="_blank"
+          >Whatsapp</a
+        ></ion-button
+      >
+      <br />
+      <br />
+      <div
+        *ngIf="product && product.seller && product.seller.sellerCompanyName"
+        class="sponsored-footer{{ feature }}"
+      >
+        <p
+          class="clmp-cls-1"
+          (click)="sellerUrl( this.urlService.getSellerUrl(product.seller.sellerCompanyName))"
+        >
+          <strong
+            ><span class="sponsor-name">
+              {{ product.seller.sellerCompanyName.length > SAWidth ?
+              product.seller.sellerCompanyName.substring(0, SAWidth) :
+              product.seller.sellerCompanyName }}<span
+                *ngIf="product.seller.sellerCompanyName.length > SAWidth"
+                >...</span
+              >
+            </span></strong
+          >
+        </p>
+      </div>
+
+      <p (click)="productDetail(product.id)">
+        <span
+          *ngIf="
+              product.seller.mainMarkets &&
+              product.seller.mainMarkets.length > 0 &&
+              (product.seller.mainMarkets.length[0] != '' ||
+                product.seller.mainMarkets.length[0] != null)
+            "
+          class="service-area"
+          >{{ product.seller.mainMarkets.join(", ") }}</span
+        >
+        <span
+          *ngIf="
+              (!product.seller.mainMarkets ||
+                (product.seller.mainMarkets &&
+                  product.seller.mainMarkets.length == 0) ||
+                (product.seller.mainMarkets &&
+                  product.seller.mainMarkets.length > 0 &&
+                  (product.seller.mainMarkets[0] == null ||
+                    product.seller.mainMarkets[0] == ''))) &&
+              (product.seller.country ||
+                product.seller.state ||
+                product.seller.city)
+            "
+          class="service-area"
+        >
+          {{ product.seller.city ? product.seller.city + ", " : "" }} {{
+          product.seller.state ? product.seller.state + ", " : "" }} {{
+          product.seller.country ? product.seller.country : "" }}</span
+        >
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="top-banner">
+    <div
+      id="div-gpt-ad-1632925333617-0"
+      style="text-align: center; margin-bottom: 16px"
+    ></div>
+  </div>
+</ion-content>

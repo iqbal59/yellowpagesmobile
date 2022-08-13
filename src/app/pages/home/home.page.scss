@@ -1,0 +1,210 @@
+.searchbar {
+  background-color: var(--ion-color-primary);
+  padding: 0 16px;
+  padding-bottom: 16px;
+  ion-item {
+    border-radius: 25px;
+  }
+}
+
+.main_content_div {
+  width: 100%;
+  padding: 16px;
+  // padding-bottom: 70px;
+
+  ion-label {
+    display: block;
+  }
+
+  .slider_div {
+    margin-bottom: 16px;
+
+    .card {
+      width: 100%;
+      // margin-right: 10px;
+      // margin-bottom: 10px;
+
+      // .back_image {
+      //   height: 210px;
+      //   width: 100%;
+      //   background-position: center;
+      //   background-repeat: no-repeat;
+      //   background-size: cover;
+      //   // border-radius: 5px;
+      //   position: relative;
+
+      //   .overlay_div {
+      //     background: rgba(0, 0, 0, 0.5);
+      //     position: absolute;
+      //     top: 50%;
+      //     transform: translateY(-50%);
+      //     width: 70%;
+      //     right: 0;
+      //     padding: 10px;
+
+      //     ion-label {
+      //       color: white;
+      //       text-align: right;
+      //       font-size: 14px;
+      //       font-family: muli-bold;
+      //     }
+      //   }
+      // }
+    }
+
+    ion-card {
+      padding-bottom: 30px;
+      margin: 0 8px;
+      ion-card-header {
+        ion-card-title {
+          font-size: 18px;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+      ion-card-content {
+        height: 67px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .top-banner {
+    padding-bottom: 16px;
+    text-align: center;
+    img {
+      text-align: center;
+    }
+  }
+  .cateLbl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .all {
+      font-weight: bold;
+      font-family: muli-bold;
+    }
+    .view {
+      font-family: muli-bold;
+      color: var(--ion-color-primary);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+
+      ion-icon {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .topcategory {
+    padding: 16px 0;
+    margin: -10px;
+    ion-grid > ion-row > ion-col:odd {
+      margin-right: 5px;
+    }
+
+    ion-grid > ion-row > ion-col:even {
+      margin-left: 5px;
+    }
+    .back_image {
+      height: 150px;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+
+      .bottom_div {
+        height: 50px;
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 0 5px;
+        font-size: 14px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .popular_product {
+    margin: -10px -10px 16px -10px;
+
+    ion-card {
+      margin: 0;
+
+      ion-card-header {
+        ion-card-title {
+          text-align: center;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .supplier {
+    margin-bottom: 16px;
+    ion-slide {
+      display: block;
+
+      ion-button {
+        img {
+          padding: 4px;
+        }
+      }
+      ion-item {
+        // width: 100%;
+        border-radius: 25px;
+        ion-label {
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+        img {
+          height: 32px;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  .about_div {
+    background-color: var(--ion-color-step-250, #f9f9f9) !important;
+    strong {
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 22px;
+      color: #8c8c8c;
+      margin: 0;
+      text-align: justify;
+    }
+  }
+}
+
+.social {
+  margin-bottom: 50px;
+  background-color: #000000;
+  padding: 16px;
+  a {
+    padding: 16px;
+  }
+}
+
+.stick_ad {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}

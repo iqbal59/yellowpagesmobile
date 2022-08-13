@@ -1,0 +1,51 @@
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+
+  ion-icon {
+    margin-right: 20px;
+  }
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+/* add appropriate colors to fb, twitter and google buttons */
+.fb {
+  background-color: #3b5998;
+  color: white;
+}
+
+.twitter {
+  background-color: #55acee;
+  color: white;
+}
+
+.vimeo {
+  background-color: #1ab7ea;
+  color: white;
+}
+
+.pinterest {
+  background-color: #bd081c;
+  color: white;
+}
+
+.instagram {
+  background-color: #e4405f;
+  color: white;
+}
+
+.linkedin {
+  background-color: #0a66c2;
+  color: white;
+}

@@ -1,0 +1,8 @@
+<div class="img-center">
+  <img
+    class="imgWidHt{{ imgHt }}"
+    *ngIf="this.imageContent"
+    [alt]="this.prodName ? this.prodName : 'image'"
+    [src]="this.imageContent"
+  />
+</div>

@@ -1,0 +1,44 @@
+ion-grid {
+  h4 {
+    text-transform: uppercase;
+  }
+  // border: 1px solid #ccc;
+}
+
+.seller-enquiry-form,
+.modal-seller-enquiry-form {
+  padding: 10px;
+  font-size: 0.8rem;
+}
+.seller-enquiry-form h4,
+.modal-seller-enquiry-form h4 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+}
+.seller-enquiry-form .btn-submit {
+  background: #fad606;
+  border: 1px solid #fad606;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #000;
+  margin-top: 10px;
+}
+.c-ct {
+  background-color: #719e19;
+  color: white;
+  padding: 8px;
+}
+.call-us {
+  text-align: center;
+  padding: 8px;
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  background-color: #719e19;
+}
+.seller-enquiry-form {
+  border: 2px solid #efefef;
+  margin-top: 15px;
+}

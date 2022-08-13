@@ -1,0 +1,126 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Search</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeSearch()"
+        ><ion-icon name="close"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <form>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="full">
+            <ion-searchbar
+              type="text"
+              debounce="500"
+              [value]="terms"
+              (ionClear)="searchClear()"
+              (ionFocus)="setIsSearch()"
+              placeholder="Product/Service"
+              (ionChange)="getSearch($event)"
+              clearInput
+            ></ion-searchbar>
+          </ion-item>
+
+          <ion-list
+            *ngIf="
+              this.homeSearchService && this.homeSearchService.searchResults
+            "
+          >
+            <ion-item
+              *ngFor="
+                let keyword of this.homeSearchService.searchResults['keywords']
+              "
+              (click)="onSelectSearchText('keyword', keyword)"
+            >
+              <ion-label>{{ keyword }}</ion-label>
+            </ion-item>
+
+            <ion-list-header
+              color="primary"
+              *ngIf="
+                this.homeSearchService.searchResults['productNames'] &&
+                this.homeSearchService.searchResults['productNames'].length > 0
+              "
+              >Product</ion-list-header
+            >
+            <ion-item
+              *ngFor="
+                let product of this.homeSearchService.searchResults[
+                  'productNames'
+                ]
+              "
+              (click)="onSelectSearchText('product', product)"
+            >
+              <ion-label>{{ product.productName }}</ion-label>
+            </ion-item>
+
+            <ion-list-header
+              color="primary"
+              *ngIf="
+                this.homeSearchService.searchResults['sellerNames'] &&
+                this.homeSearchService.searchResults['sellerNames'].length > 0
+              "
+              >Company</ion-list-header
+            >
+            <ion-item
+              *ngFor="
+                let seller of this.homeSearchService.searchResults[
+                  'sellerNames'
+                ]
+              "
+              (click)="onSelectSearchText('seller', seller)"
+            >
+              <ion-label>{{ seller }}</ion-label>
+            </ion-item>
+
+            <ion-list-header
+              color="primary"
+              *ngIf="
+                this.homeSearchService.searchResults['subCatNames'] &&
+                this.homeSearchService.searchResults['subCatNames'].length > 0
+              "
+              >Subcategories</ion-list-header
+            >
+            <ion-item
+              *ngFor="
+                let subcategory of this.homeSearchService.searchResults[
+                  'subCatNames'
+                ]
+              "
+              (click)="onSelectSearchText('subcategory', subcategory)"
+            >
+              <ion-label> {{ subcategory.subCategoryName }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-item lines="full">
+            <ion-label>Location*</ion-label>
+            <ion-select name="location" [(ngModel)]="location">
+              <ion-select-option
+                value="{{ area }}"
+                *ngFor="let area of areas"
+                >{{ area }}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" text-center>
+          <ion-button
+            (click)="onClickSearch()"
+            shape="round"
+            expand="full"
+            color="secondary"
+            >Search</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
